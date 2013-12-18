@@ -1,5 +1,5 @@
 App.MeetupController = Ember.ObjectController.extend({
-    where: function(key, value) {
+  where: function(key, value) {
     // setter
     if (arguments.length > 1) {
       this.set('location.place',  value);
