@@ -1,9 +1,13 @@
 App.Router.map(function() {
   this.resource('locations', function() {
-    this.resource('meetups', function() {
-      this.route('edit', { path: '/edit/:meetup_id'} );
-    });
+    this.resource('meetups');
   });
+});
+
+App.IndexRoute = Ember.Route.extend({
+  redirect: function(params) {
+    this.transitionTo("meetups");
+  }
 });
 
 App.LocationsRoute = Ember.Route.extend({

@@ -8,7 +8,7 @@ App.Location = DS.Model.extend({
 });
 
 App.Meetup = DS.Model.extend({
-  when: DS.attr('date'),
+  when: DS.attr('string'),
   group: DS.attr('string'),
   topic: DS.attr('string'),
   location: DS.belongsTo('location')

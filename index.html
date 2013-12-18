@@ -28,24 +28,69 @@
     {{outlet}}
   </script>
 
-  <script type="text/x-handlebars" data-template-name="meetups/index">
+  <script type="text/x-handlebars" data-template-name="meetups">
     <div>
-      {{#each}}
-        <div class="panel panel-primary">
-          <div class="panel-heading">
-            <button {{action edit id}} class="btn btn-success btn-sm">Edit</button>
-            {{group}}
-          </div>
-          <div class="panel-body">
-            <ul>
-              <li><b>What?</b> {{topic}}</li>
-              <li><b>When?</b> {{when}}</li>
-              <li><b>Where?</b> {{where}}</li>
-            </ul>
-          </div>
+      {{#each meetup in controller}}
+        <div class="col-sm-6">
+          {{#if meetup.isEditing}}
+            {{render "meetup-edit" meetup}}
+          {{else}}
+            {{render "meetup-show" meetup}}
+          {{/if}}
         </div>
       {{/each}}
     </div>
   </script>
+
+  <script type="text/x-handlebars" data-template-name="meetup-show">
+    <div class="panel panel-primary">
+      <div class="panel-heading">
+        <button {{action edit}} class="btn btn-success btn-sm">Edit</button>
+        {{group}}
+      </div>
+      <div class="panel-body">
+        <div class="form-group">
+          <div class="row">
+            <label class="col-sm-2 control-label">What?</label>
+            <div class="col-sm-10">{{topic}}</div>
+          </div>
+          <div class="row">
+            <label class="col-sm-2 control-label">When?</label>
+            <div class="col-sm-10">{{when}}</div>
+          </div>
+          <div class="row">
+            <label class="col-sm-2 control-label">Where?</label>
+            <div class="col-sm-10">{{where}}</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </script>
+
+  <script type="text/x-handlebars" data-template-name="meetup-edit">
+    <div class="panel panel-default">
+      <div class="panel-heading">
+        <button {{action save}} class="btn btn-primary btn-sm">Done</button>
+        {{group}}
+      </div>
+      <div class="panel-body">
+        <div class="form-group">
+          <div class="row">
+            <label class="col-sm-1 control-label">What?</label>
+            <div class="col-sm-10">{{input value=topic class="form-control"}}</div>
+          </div>
+          <div class="row">
+            <label class="col-sm-1 control-label">When?</label>
+            <div class="col-sm-10">{{input value=when class="form-control"}}</div>
+          </div>
+          <div class="row">
+            <label class="col-sm-1 control-label">Where?</label>
+            <div class="col-sm-10">{{input value=where class="form-control"}}</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </script>
+
 </body>
 </html>
